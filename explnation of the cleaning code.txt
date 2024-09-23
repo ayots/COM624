@@ -1,0 +1,30 @@
+
+ Explanation of the Code:
+
+
+1. Loading the dataset:
+
+The pd.read_csv() function loads the dataset from the CSV file.
+Handling missing values:
+
+2. For the Age column, missing values are filled with the median age of the dataset (df['Age'].median()).
+The Cabin column is dropped entirely since it has many missing values.
+
+
+3.Output:
+
+The original and cleaned datasets are printed.
+The cleaned dataset is saved to a new CSV file (titanic_cleaned.csv).
+Result: Cleaned Dataset
+After running the code, the cleaned dataset will look like this:
+
+Name	Age	Ticket
+John Smith	25	347082
+Mary Johnson	30	349909
+William Brown	45	A/5 21171
+Linda White	38	PC 17599
+James Green	30	113803
+Emma Black	30	373450
+Missing ages have been replaced by the median age (30).
+
+The Cabin column has been dropped.

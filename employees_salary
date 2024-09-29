@@ -1,0 +1,65 @@
+# Step 1: Import required libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+
+# Step 2: Load the dataset
+# Let's use a public dataset from GitHub for this demonstration. Adjust the path or URL as needed.
+url = "https://raw.githubusercontent.com/plotly/datasets/master/salaries.csv"
+df = pd.read_csv(url)
+
+# Preview the dataset
+print(df.head())
+
+# Step 3: Calculate Measures of Central Tendency
+salaries = df['BasePay']  # Assuming 'BasePay' is the column representing employee salaries
+
+# Calculate Mean, Median, Mode
+mean_salary = np.mean(salaries)
+median_salary = np.median(salaries)
+mode_salary = stats.mode(salaries)[0][0]
+
+print(f"Mean Salary: ${mean_salary:.2f}")
+print(f"Median Salary: ${median_salary:.2f}")
+print(f"Mode Salary: ${mode_salary:.2f}")
+
+# Step 4: Analyze Variability
+std_dev_salary = np.std(salaries)
+print(f"Standard Deviation of Salaries: ${std_dev_salary:.2f}")
+
+# Visualize Variability: Histogram
+plt.figure(figsize=(10, 6))
+sns.histplot(salaries, kde=True, bins=30)
+plt.axvline(mean_salary, color='red', linestyle='dashed', linewidth=1, label='Mean')
+plt.axvline(median_salary, color='blue', linestyle='dashed', linewidth=1, label='Median')
+plt.legend()
+plt.title('Histogram of Employee Salaries')
+plt.xlabel('Salary')
+plt.ylabel('Frequency')
+plt.show()
+
+# Step 5: Box Plot Visualization
+plt.figure(figsize=(10, 6))
+sns.boxplot(x=salaries)
+plt.title('Box Plot of Employee Salaries')
+plt.xlabel('Salary')
+plt.show()
+
+# Step 6: Group Analysis
+# Let's assume we have a 'JobTitle' column to group salaries by job role.
+plt.figure(figsize=(12, 8))
+sns.barplot(x='JobTitle', y='BasePay', data=df, estimator=np.mean, ci=None)
+plt.xticks(rotation=90)
+plt.title('Average Salary by Job Title')
+plt.xlabel('Job Title')
+plt.ylabel('Average Salary')
+plt.show()
+
+# Step 7: Summary of Key Insights
+print("\nKey Insights:")
+print(f"- The mean salary is ${mean_salary:.2f}, while the median is ${median_salary:.2f}.")
+print(f"- The standard deviation is ${std_dev_salary:.2f}, indicating {'high' if std_dev_salary > mean_salary * 0.2 else 'low'} variability.")
+print("- The box plot shows the spread of salaries, with potential outliers at the higher end indicating highly paid employees.")
+print("- The bar chart shows salary variation across different job titles, highlighting differences in compensation across roles.")

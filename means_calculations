@@ -1,0 +1,23 @@
+# Import Libraries
+import math
+import statistics
+import numpy as np
+
+# Define a list
+x = [8.0, 1, 2.5, 4, 28.0]  # Sample data
+
+# Print values
+print(x)
+
+# Calculate mean simple
+mean = sum(x) / len(x)  # 8.7
+print("Mean calculated using simple method:", mean)
+
+# Using statistics library
+mean = statistics.mean(x)  # 8.7
+print("Mean calculated using statistics library:", mean)
+
+# If you are using numpy then
+y = np.array(x)
+mean = np.mean(y)  # 8.7
+print("Mean calculated using numpy:", mean)
